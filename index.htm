@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="sa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DNS नाम सर्वर विवरण - भारतीय भाषाओं में DNS जानकारी">
+  <meta name="theme-color" content="#0d6efd">
+  <link rel="manifest" href="https://dns.ingr.in/manifest.json">
+  <title>नाम सर्वर विवरणम्</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nirmala UI', 'Mangal', 'Devanagari', 'Noto Sans Devanagari', Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* नेविगेशन मेनू */
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background: #0d6efd;
+      padding: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .menu a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+    }
+
+    /* मुख्य कंटेनर */
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,20,30,0.15);
+    }
+
+    h1 {
+      text-align: center;
+      color: #b74b3f;
+      font-size: 2rem;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #e2d5c0;
+      padding-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .subhead {
+      text-align: center;
+      color: #3a5e6b;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    /* सर्वर लिस्ट */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f9f3e7;
+      margin: 12px 0;
+      padding: 0;
+      border-radius: 40px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid #dccbb8;
+    }
+
+    li:hover {
+      transform: translateY(-3px) scale(1.02);
+      background: #fff6e8;
+      box-shadow: 0 6px 14px rgba(180,100,60,0.15);
+      border-color: #b74b3f;
+    }
+
+    li a {
+      display: block;
+      padding: 16px 24px;
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #1e4a5f;
+      text-align: center;
+      letter-spacing: 0.3px;
+      border-radius: 40px;
+      transition: color 0.3s ease;
+    }
+
+    li a:hover {
+      color: #b74b3f;
+      text-decoration: underline;
+    }
+
+    /* नोट सेक्शन */
+    .note {
+      background: #e7ded1;
+      padding: 15px;
+      border-radius: 30px;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2b4b55;
+      border-left: 5px solid #b74b3f;
+      font-size: 1.1rem;
+    }
+
+    /* फूटर */
+    .footer {
+      text-align: center;
+      margin-top: 35px;
+      font-size: 0.95rem;
+      color: #5c6f7e;
+      background: #eef2f5;
+      padding: 14px;
+      border-radius: 30px;
+      border: 1px solid #d0d9e0;
+    }
+
+    .footer span {
+      color: #a03d2f;
+      font-weight: 500;
+    }
+
+    /* एरर मैसेज स्टाइल */
+    .error-message {
+      text-align: center;
+      padding: 40px 20px;
+      color: #b74b3f;
+      background: #fff3f0;
+      border-radius: 16px;
+      border: 1px solid #ffcdc5;
+      margin: 20px 0;
+    }
+
+    .error-message h3 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+
+    /* लोडिंग स्पिनर */
+    .loading-spinner {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #b74b3f;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* डेविस रिस्पॉन्सिव डिज़ाइन */
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px 15px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      .menu {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .menu a {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+
+      li a {
+        font-size: 1.1rem;
+        padding: 14px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin: 10px 10px;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .subhead {
+        font-size: 1rem;
+      }
+
+      .note {
+        font-size: 0.95rem;
+        padding: 12px;
+      }
+
+      li a {
+        font-size: 1rem;
+        padding: 12px 16px;
+      }
+    }
+
+    /* प्रिंट स्टाइल */
+    @media print {
+      .menu, .footer, .note {
+        display: none;
+      }
+
+      .container {
+        box-shadow: none;
+        margin: 0;
+        padding: 20px;
+      }
+
+      li {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="menu" aria-label="मुख्य नेविगेशन">
+    <a href="https://dns.ingr.in/home.html" onclick="loadPage('index.html'); return false;" aria-current="page">होम</a>
+    <a href="https://dns.ingr.in/about.html" onclick="loadPage('about.html'); return false;">हमारे बारे में</a>
+    <a href="https://dns.ingr.in/faq.html" onclick="loadPage('faq.html'); return false;">सामान्य प्रश्न</a>
+    <a href="https://dns.ingr.in/contact.html" onclick="loadPage('contact.html'); return false;">संपर्क करें</a>
+  </nav>
+
+  <!-- मुख्य कंटेंट एरिया -->
+  <main id="app">
+    <div class="loading-spinner" id="initialLoading">
+      <div class="spinner"></div>
+      <p>पेज लोड हो रहा है...</p>
+    </div>
+  </main>
+
+  <script>
+    // मेन्यू वेरिएबल
+    let currentPage = 'home.html';
+    let isLoading = false;
+
+    // लोडिंग इंडिकेटर दिखाने का फंक्शन
+    function showLoading(show) {
+      isLoading = show;
+      const loadingEl = document.getElementById('initialLoading');
+      if (loadingEl) {
+        loadingEl.style.display = show ? 'block' : 'none';
+      }
+    }
+
+    // पेज लोड करने का मुख्य फंक्शन
+    async function loadPage(page) {
+      // अगर वही पेज है या लोड हो रहा है तो रोकें
+      if (page === currentPage && document.getElementById('app').innerHTML !== '') {
+        return;
+      }
+
+      // लोडिंग दिखाएं
+      showLoading(true);
+      currentPage = page;
+
+      try {
+        // फेच रिक्वेस्ट
+        const response = await fetch(page);
+        
+        // अगर रिस्पॉन्स ठीक नहीं है
+        if (!response.ok) {
+          throw new Error(`पेज '${page}' नहीं मिला (${response.status})`);
+        }
+
+        // डेटा को टेक्स्ट में बदलें
+        const data = await response.text();
+
+        // डेटा को app डिव में डालें
+        document.getElementById("app").innerHTML = data;
+
+        // हिस्ट्री अपडेट करें (SEO के लिए)
+        history.pushState({page: page}, '', page);
+
+        // एक्सेसिबिलिटी के लिए फोकस मैनेज करें
+        document.getElementById('app').setAttribute('tabindex', '-1');
+        document.getElementById('app').focus();
+
+      } catch (error) {
+        // एरर मैसेज दिखाएं
+        document.getElementById("app").innerHTML = `
+          <div class="error-message" role="alert">
+            <h3>⚠️ त्रुटि हुई</h3>
+            <p>${error.message}</p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">कृपया पुनः प्रयास करें या <a href="index.html" onclick="loadPage('index.html'); return false;">होम पेज</a> पर जाएं।</p>
+          </div>
+        `;
+        
+        // कंसोल में एरर लॉग करें
+        console.error('Page load error:', error);
+      } finally {
+        // लोडिंग छुपाएं
+        showLoading(false);
+      }
+    }
+
+    // बैक/फॉरवर्ड बटन हैंडल करें
+    window.addEventListener('popstate', function(event) {
+      if (event.state && event.state.page) {
+        loadPage(event.state.page);
+      } else {
+        loadPage('home.html');
+      }
+    });
+
+    // विंडो लोड होने पर
+    window.onload = function() {
+      // URL से पेज निकालें
+      const path = window.location.pathname;
+      let page = 'home.html';
+      
+      if (path.includes('/')) {
+        const fileName = path.split('/').pop();
+        if (fileName && fileName.endsWith('.html')) {
+          page = fileName;
+        }
+      }
+      
+      // पेज लोड करें
+      loadPage(page);
+    }
+
+    // सर्विस वर्कर रजिस्टर करें
+    if ("serviceWorker" in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register("https://dns.ingr.in/sw.js")
+          .then(registration => {
+            console.log('ServiceWorker registered:', registration);
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed:', error);
+          });
+      });
+    }
+
+    // ऑफलाइन डिटेक्शन
+    window.addEventListener('offline', function() {
+      const app = document.getElementById('app');
+      if (app && !app.querySelector('.error-message')) {
+        app.innerHTML += `
+          <div class="error-message" style="margin-top: 20px;" role="alert">
+            <p>📶 आप ऑफलाइन हैं। कुछ सुविधाएं उपलब्ध नहीं हो सकती हैं।</p>
+          </div>
+        `;
+      }
+    });
+  </script>
+
+  <!-- नो-स्क्रिप्ट फॉलबैक -->
+  <noscript>
+    <div style="background: #ffebee; padding: 20px; text-align: center; margin: 20px;">
+      <h3>⚠️ जावास्क्रिप्ट सक्षम नहीं है</h3>
+      <p>कृपया इस वेबसाइट को ठीक से देखने के लिए जावास्क्रिप्ट सक्षम करें।</p>
+      <p><a href="https://dns.ingr.in/home.html">होम पेज पर जाएं</a></p>
+    </div>
+  </noscript>
+</body>
+  </html>
