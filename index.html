@@ -1,400 +1,648 @@
 <!DOCTYPE html>
-<html lang="sa">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DNS नाम सर्वर विवरण - भारतीय भाषाओं में DNS जानकारी">
-  <meta name="theme-color" content="#ffffff">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="manifest" href="https://dns.ingr.in/manifest.json">
-  <title>नाम सर्वर विवरणम्</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Ingr.in - Modern Web Platform">
+<meta name="keywords" content="ingr, social, platform">
+<meta name="author" content="Ingr">
+<title>Ingr.in - Auto-Adjust Footer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- App Info -->
+<meta name="theme-color" content="#0d6efd">
+<link rel="manifest" href="https://dns.ingr.in/manifest.json">
+<script defer>
+if ("serviceWorker" in navigator) {
+navigator.serviceWorker.register("https://dns.ingr.in/sw.js");
+}
+</script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Russo+One&family=Great+Vibes&display=swap');
 
-    body {
-      font-family: 'Nirmala UI', 'Mangal', 'Devanagari', 'Noto Sans Devanagari', Arial, sans-serif;
-      background: #f0f4f8;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+transition:all .25s ease-in-out;
+}
 
-    /* नेविगेशन मेनू */
-    .menu {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      background: #0d6efd;
-      padding: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+html{
+scroll-behavior:smooth;
+}
 
-    .menu a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 20px;
-      transition: background 0.3s ease;
-    }
+/* VARIABLES */
+:root{
+--gradient-start:#f43f5e;
+--gradient-end:#8b5cf6;
+--accent:#2dd4bf;
+--bg-soft:#fff9f9;
+--card-bg:rgba(255,255,255,.85);
+--text-dark:#1e1b4b;
+--text-light:#f8fafc;
+--shadow:0 20px 30px -10px rgba(139,92,246,.3);
+--radius:40px;
+}
 
-    .menu a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      text-decoration: none;
-    }
+/* BODY */
+body{
+font-family:'Quicksand',sans-serif;
+background:linear-gradient(145deg,#ffe4e6 0%,#ede9fe 100%);
+min-height:100vh;
+display:flex;
+flex-direction:column;
+color:var(--text-dark);
+line-height:1.5;
+}
 
-    /* मुख्य कंटेनर */
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,20,30,0.15);
-    }
+/* BACKGROUND GLOW */
+body::before{
+content:'';
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 30% 30%,rgba(244,63,94,.15) 0%,transparent 40%),
+radial-gradient(circle at 80% 70%,rgba(139,92,246,.12) 0%,transparent 45%);
+z-index:-1;
+pointer-events:none;
+}
 
-    h1 {
-      text-align: center;
-      color: #b74b3f;
-      font-size: 2rem;
-      margin-bottom: 10px;
-      border-bottom: 2px solid #e2d5c0;
-      padding-bottom: 12px;
-      font-weight: 600;
-    }
+/* CONTAINER */
+.container{
+max-width:1200px;
+margin:0 auto;
+padding:0 24px;
+width:100%;
+}
 
-    .subhead {
-      text-align: center;
-      color: #3a5e6b;
-      font-size: 1.1rem;
-      margin-bottom: 25px;
-      font-style: italic;
-    }
+/* HEADER */
+header{
+position:sticky;
+top:16px;
+margin:16px auto 0;
+z-index:100;
+background:rgba(255,255,255,.5);
+backdrop-filter:blur(12px);
+border-radius:80px;
+width:calc(100% - 32px);
+max-width:1200px;
+left:0;
+right:0;
+box-shadow:0 8px 28px -8px rgba(0,0,0,.15);
+padding:8px 20px;
+border:1px solid rgba(255,255,255,.6);
+}
 
-    /* सर्वर लिस्ट */
-    ul {
-      list-style: none;
-      padding: 0;
-    }
+.header-content{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+width:100%;
+}
 
-    li {
-      background: #f9f3e7;
-      margin: 12px 0;
-      padding: 0;
-      border-radius: 40px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-      border: 1px solid #dccbb8;
-    }
+/* LOGO */
+.logo{
+font-family:'Space Grotesk',sans-serif;
+font-weight:700;
+font-size:1.8rem;
+background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+display:flex;
+align-items:center;
+gap:8px;
+}
 
-    li:hover {
-      transform: translateY(-3px) scale(1.02);
-      background: #fff6e8;
-      box-shadow: 0 6px 14px rgba(180,100,60,0.15);
-      border-color: #b74b3f;
-    }
+/* NAVIGATION */
+.nav-links{
+display:flex;
+gap:8px;
+background:rgba(255,255,255,.35);
+padding:4px;
+border-radius:60px;
+}
 
-    li a {
-      display: block;
-      padding: 16px 24px;
-      text-decoration: none;
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: #1e4a5f;
-      text-align: center;
-      letter-spacing: 0.3px;
-      border-radius: 40px;
-      transition: color 0.3s ease;
-    }
+.nav-links a{
+padding:10px 20px;
+border-radius:40px;
+font-weight:600;
+font-size:1rem;
+text-decoration:none;
+color:#1e1b4b;
+display:inline-flex;
+align-items:center;
+gap:6px;
+border:1px solid transparent;
+}
 
-    li a:hover {
-      color: #b74b3f;
-      text-decoration: underline;
-    }
+.nav-links a:hover{
+background:white;
+border-color:#fbcfe8;
+box-shadow:0 6px 14px #fbcfe8;
+color:#f43f5e;
+}
 
-    /* नोट सेक्शन */
-    .note {
-      background: #e7ded1;
-      padding: 15px;
-      border-radius: 30px;
-      text-align: center;
-      margin-bottom: 25px;
-      color: #2b4b55;
-      border-left: 5px solid #b74b3f;
-      font-size: 1.1rem;
-    }
+.nav-links a.active{
+background:white;
+color:#f43f5e;
+border:1px solid #fbcfe8;
+box-shadow:0 6px 16px rgba(244,63,94,.25);
+}
 
-    /* फूटर */
-    .footer {
-      text-align: center;
-      margin-top: 35px;
-      font-size: 0.95rem;
-      color: #5c6f7e;
-      background: #eef2f5;
-      padding: 14px;
-      border-radius: 30px;
-      border: 1px solid #d0d9e0;
-    }
+/* MAIN CARD */
+main{
+flex:1;
+margin:40px 24px 20px 24px;
+background:var(--card-bg);
+backdrop-filter:blur(8px);
+border-radius:56px;
+padding:2.5rem 2rem;
+box-shadow:var(--shadow);
+border:1px solid rgba(255,255,255,.7);
+font-size:1.3rem;
+min-height:350px;
+animation:fadeIn .35s ease;
+}
 
-    .footer span {
-      color: #a03d2f;
-      font-weight: 500;
-    }
+/* PAGE FADE */
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
 
-    /* एरर मैसेज स्टाइल */
-    .error-message {
-      text-align: center;
-      padding: 40px 20px;
-      color: #b74b3f;
-      background: #fff3f0;
-      border-radius: 16px;
-      border: 1px solid #ffcdc5;
-      margin: 20px 0;
-    }
+/* MESSAGE BOX */
+.SlE{
+text-align:center;
+font-family:'Space Grotesk',sans-serif;
+background:rgba(255,255,255,.35);
+border-radius:48px;
+padding:2rem;
+}
 
-    .error-message h3 {
-      margin-bottom: 10px;
-      font-size: 1.5rem;
-    }
+.SlE h2{
+font-size:3rem;
+background:linear-gradient(145deg,#f43f5e,#8b5cf6);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:.5rem;
+}
 
-    /* लोडिंग स्पिनर */
-    .loading-spinner {
-      text-align: center;
-      padding: 40px;
-    }
+.SlE p{
+font-size:1.4rem;
+color:#334155;
+}
 
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #b74b3f;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 15px;
-    }
+/* LOADING */
+.loading{
+text-align:center;
+padding:40px;
+font-size:1.4rem;
+font-weight:600;
+color:#64748b;
+}
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+/* FOOTER */
+footer{
+background:rgba(255,237,240,.7);
+backdrop-filter:blur(12px);
+border-radius:60px 60px 0 0;
+margin:40px 16px 0;
+padding:16px 24px 28px;
+box-shadow:0 -10px 30px -10px #d8b4fe;
+border-top:2px solid rgba(255,255,255,.7);
+}
 
-    /* डेविस रिस्पॉन्सिव डिज़ाइन */
-    @media (max-width: 768px) {
-      .container {
-        margin: 20px 15px;
-        padding: 20px;
-      }
+.footer-title{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+font-size:1.6rem;
+font-weight:700;
+cursor:pointer;
+padding:14px 24px;
+background:rgba(255,255,255,.6);
+border-radius:80px;
+margin-bottom:8px;
+}
 
-      h1 {
-        font-size: 1.7rem;
-      }
+.footer-content{
+display:none;
+gap:24px;
+padding:24px 16px;
+transition:all .35s ease;
+}
 
-      .menu {
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 10px;
-      }
+footer.active .footer-content{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
 
-      .menu a {
-        font-size: 0.9rem;
-        padding: 6px 12px;
-      }
+/* FOOTER LINKS */
 
-      li a {
-        font-size: 1.1rem;
-        padding: 14px 20px;
-      }
-    }
+.footer-links a{
+text-decoration:none;
+color:#3b2c6b;
+font-weight:600;
+background:rgba(255,255,255,.5);
+padding:8px 20px;
+border-radius:40px;
+border:1px solid white;
+}
 
-    @media (max-width: 480px) {
-      .container {
-        margin: 10px 10px;
-        padding: 15px;
-      }
+.footer-links a:hover{
+background:white;
+box-shadow:0 8px 18px #fbcfe8;
+}
 
-      h1 {
-        font-size: 1.4rem;
-      }
+/* COPYRIGHT */
+.copyright{
+font-size:1rem;
+text-align:center;
+background:rgba(255,255,255,.4);
+padding:10px 20px;
+border-radius:60px;
+}
 
-      .subhead {
-        font-size: 1rem;
-      }
+/* BACK TO TOP */
+.back-to-top{
+position:fixed;
+bottom:30px;
+right:20px;
+background:#f43f5e;
+color:white;
+width:55px;
+height:55px;
+border-radius:30px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 10px 25px #f0abfc;
+opacity:0;
+pointer-events:none;
+z-index:99;
+}
 
-      .note {
-        font-size: 0.95rem;
-        padding: 12px;
-      }
+.back-to-top.visible{
+opacity:1;
+pointer-events:auto;
+}
 
-      li a {
-        font-size: 1rem;
-        padding: 12px 16px;
-      }
-    }
+.back-to-top:hover{
+background:#8b5cf6;
+transform:scale(1.1) translateY(-4px);
+}
 
-    /* प्रिंट स्टाइल */
-    @media print {
-      .menu, .footer, .note {
-        display: none;
-      }
+/* SCROLLBAR */
+::-webkit-scrollbar{
+width:8px;
+height:8px;
+}
 
-      .container {
-        box-shadow: none;
-        margin: 0;
-        padding: 20px;
-      }
+::-webkit-scrollbar-thumb{
+background:linear-gradient(180deg,#f43f5e,#8b5cf6);
+border-radius:20px;
+}
 
-      li {
-        break-inside: avoid;
-      }
-    }
-  </style>
+::-webkit-scrollbar-track{
+background:transparent;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+header{
+width:calc(100% - 20px);
+margin:10px auto 0;
+padding:8px 15px;
+}
+
+.header-content{
+flex-direction:column;
+gap:12px;
+}
+
+.nav{
+overflow-x:auto;
+white-space:nowrap;
+scroll-behavior:smooth;
+}
+
+.nav::-webkit-scrollbar{
+display:none;
+}
+
+.nav::after{
+font-size:.8rem;
+margin-left:-2px;
+margin-right:-2px;
+}
+
+.nav-links{
+flex-wrap:wrap;
+justify-content:center;
+width:100%;
+}
+
+.nav-links a{
+font-size:.9rem;
+padding:8px 14px;
+}
+
+main{
+margin:24px 12px;
+padding:1.8rem 1.2rem;
+border-radius:40px;
+}
+
+.SlE h2{
+font-size:2.2rem;
+}
+
+}
+
+/* DESKTOP FIX */
+@media(min-width:1200px){
+
+header{
+margin:16px auto 0;
+}
+
+}</style>
 </head>
 
 <body>
-  <nav class="menu" aria-label="मुख्य नेविगेशन">
-    <a href="https://dns.ingr.in/home.html" onclick="loadPage('home.html'); return false;" aria-current="page">होम</a>
-    <a href="https://dns.ingr.in/about.html" onclick="loadPage('about.html'); return false;">हमारे बारे में</a>
-    <a href="https://dns.ingr.in/faq.html" onclick="loadPage('faq.html'); return false;">सामान्य प्रश्न</a>
-    <a href="https://dns.ingr.in/contact.html" onclick="loadPage('contact.html'); return false;">संपर्क करें</a>
-  </nav>
+<!-- Header -->
+<header>
+<div class="container header-content">
+<div class="logo">
+<span>ingr.in</span>
+</div>
+<nav class="nav-links nav">
+  <style>/* NAV SCROLL */
+.nav{
+overflow-x:auto;
+white-space:nowrap;
+scroll-behavior:smooth;
+-webkit-overflow-scrolling:touch;
+}
 
-  <!-- मुख्य कंटेंट एरिया -->
-  <main id="app">
-    <div class="loading-spinner" id="initialLoading">
-      <div class="spinner"></div>
-      <p>पेज लोड हो रहा है...</p>
-    </div>
-  </main>
+/* hide scrollbar */
+.nav::-webkit-scrollbar{
+display:none;
+}
 
-  <script>
-    // मेन्यू वेरिएबल
-    let currentPage = 'home.html';
-    let isLoading = false;
+.nav{
+-ms-overflow-style:none;
+scrollbar-width:none;
+}
 
-    // लोडिंग इंडिकेटर दिखाने का फंक्शन
-    function showLoading(show) {
-      isLoading = show;
-      const loadingEl = document.getElementById('initialLoading');
-      if (loadingEl) {
-        loadingEl.style.display = show ? 'block' : 'none';
-      }
-    }
+/* links inline */
+.nav-links{
+display:inline-flex;
+flex-wrap:nowrap;
+gap:2.5px;
+}
 
-    // पेज लोड करने का मुख्य फंक्शन
-    async function loadPage(page) {
-      // अगर वही पेज है या लोड हो रहा है तो रोकें
-      if (page === currentPage && document.getElementById('app').innerHTML !== '') {
-        return;
-      }
+/* link fix */
+.nav-links a{
+display:inline-flex;
+white-space:nowrap;
+}</style>
+<a href="/?sr=home"><i class="fas fa-home"></i> Home</a>
+<a href="/?sr=about"><i class="fas fa-info-circle"></i> About</a>
+<a href="/?sr=services"><i class="fas fa-envelope"></i> Contact</a>
+</nav>
+</div>
+</header>
 
-      // लोडिंग दिखाएं
-      showLoading(true);
-      currentPage = page;
+<!-- Main -->
+<main class="sr-content">
+<!-- Dynamic content will be loaded here -->
+</main>
 
-      try {
-        // फेच रिक्वेस्ट
-        const response = await fetch(page);
-        
-        // अगर रिस्पॉन्स ठीक नहीं है
-        if (!response.ok) {
-          throw new Error(`पेज '${page}' नहीं मिला (${response.status})`);
-        }
+<!-- Footer -->
+<footer id="footer">
+<div class="footer-title">
+<span style="color: #63E6BE;">&hearts;🅘🅝🅖🅡.🅘🅝</span>
+</div>
+<div class="footer-content">
+<div class="footer-links" style="grid-template-columns:2fr">
 
-        // डेटा को टेक्स्ट में बदलें
-        const data = await response.text();
+<a href="https://m.facebook.com/61576547710874/" class="fbtn facebook">
+<i class="fab fa-facebook-f"></i>
+<span>Facebook</span>
+</a>
 
-        // डेटा को app डिव में डालें
-        document.getElementById("app").innerHTML = data;
+<a href="#" class="fbtn twitter">
+<i class="fab fa-twitter"></i>
+<span>Twitter</span>
+</a>
 
-        // हिस्ट्री अपडेट करें (SEO के लिए)
-        history.pushState({page: page}, '', page);
+<a href="https://www.instagram.com/social_ingr.in?" class="fbtn instagram">
+<i class="fab fa-instagram"></i>
+<span>Instagram</span>
+</a>
 
-        // एक्सेसिबिलिटी के लिए फोकस मैनेज करें
-        document.getElementById('app').setAttribute('tabindex', '-1');
-        document.getElementById('app').focus();
+<a href="#" class="fbtn linkedin">
+<i class="fab fa-linkedin"></i>
+<span>LinkedIn</span>
+</a>
+<style>
+.footer-links{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:14px;
+}
 
-      } catch (error) {
-        // एरर मैसेज दिखाएं
-        document.getElementById("app").innerHTML = `
-          <div class="error-message" role="alert">
-            <h3>⚠️ त्रुटि हुई</h3>
-            <p>${error.message}</p>
-            <p style="margin-top: 20px; font-size: 0.9rem;">कृपया पुनः प्रयास करें या <a href="index.html" onclick="loadPage('index.html'); return false;">होम पेज</a> पर जाएं।</p>
-          </div>
-        `;
-        
-        // कंसोल में एरर लॉग करें
-        console.error('Page load error:', error);
-      } finally {
-        // लोडिंग छुपाएं
-        showLoading(false);
-      }
-    }
+.fbtn{
+display:flex;
+align-items:center;
+gap:8px;
+padding:10px 18px;
+border-radius:40px;
+font-weight:600;
+text-decoration:none;
+color:#1e1b4b;
+background:rgba(255,255,255,.6);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.7);
+box-shadow:0 6px 16px rgba(0,0,0,.08);
+}
 
-    // बैक/फॉरवर्ड बटन हैंडल करें
-    window.addEventListener('popstate', function(event) {
-      if (event.state && event.state.page) {
-        loadPage(event.state.page);
-      } else {
-        loadPage('home.html');
-      }
-    });
+.fbtn i{
+font-size:1rem;
+}
 
-    // विंडो लोड होने पर
-    window.onload = function() {
-      // URL से पेज निकालें
-      const path = window.location.pathname;
-      let page = 'home.html';
-      
-      if (path.includes('/')) {
-        const fileName = path.split('/').pop();
-        if (fileName && fileName.endsWith('.html')) {
-          page = fileName;
-        }
-      }
-      
-      // पेज लोड करें
-      loadPage(page);
-    }
+.fbtn:hover{
+transform:translateY(-4px) scale(1.05);
+box-shadow:0 12px 22px rgba(0,0,0,.15);
+color:white;
+}
 
-    // सर्विस वर्कर रजिस्टर करें
-    if ("serviceWorker" in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register("https://dns.ingr.in/sw.js")
-          .then(registration => {
-            console.log('ServiceWorker registered:', registration);
-          })
-          .catch(error => {
-            console.log('ServiceWorker registration failed:', error);
-          });
-      });
-    }
+/* brand hover colors */
 
-    // ऑफलाइन डिटेक्शन
-    window.addEventListener('offline', function() {
-      const app = document.getElementById('app');
-      if (app && !app.querySelector('.error-message')) {
-        app.innerHTML += `
-          <div class="error-message" style="margin-top: 20px;" role="alert">
-            <p>📶 आप ऑफलाइन हैं। कुछ सुविधाएं उपलब्ध नहीं हो सकती हैं।</p>
-          </div>
-        `;
-      }
-    });
-  </script>
+.facebook:hover{
+background:#1877f2;
+}
 
-  <!-- नो-स्क्रिप्ट फॉलबैक -->
-  <noscript>
-    <div style="background: #ffebee; padding: 20px; text-align: center; margin: 20px;">
-      <h3>⚠️ जावास्क्रिप्ट सक्षम नहीं है</h3>
-      <p>कृपया इस वेबसाइट को ठीक से देखने के लिए जावास्क्रिप्ट सक्षम करें।</p>
-      <p><a href="https://dns.ingr.in/home.html">होम पेज पर जाएं</a></p>
-    </div>
-  </noscript>
+.twitter:hover{
+background:#1da1f2;
+}
+
+.instagram:hover{
+background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
+}
+
+.linkedin:hover{
+background:#0077b5;
+}</style>
+</div>
+<div class="copyright">
+<i class="fa-brands fa-square-bluesky"></i> 2025 Ingr.in — <a href="https://sn.ingr.in" style="color:var(--light); text-decoration:none; cursor:pointer;"><span style="color: #2dd4bf;">All Rights Reserved | Privacy Policy | Terms of Service</span></a>
+</div>
+<div class="from-orange-100">
+<span style="
+background-image:
+linear-gradient(greenyellow, gold, hotpink, SpringGreen),
+linear-gradient(gold, greenyellow, deeppink, darkblue),
+linear-gradient(SpringGreen, #00FF7F, magenta, gold),
+linear-gradient(magenta, SpringGreen, Fuchsia, #377af5);
+font-size: 1.8rem;
+font-weight:bold; font-style:italic;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+display: inline-block;">
+<i class="fa-brands fa-square-bluesky"></i>
+<span style="font-family: 'Great Vibes', 'Alex Brush', 'Dancing Script', cursive, serif;">&nbsp;Power&nbsp;By&nbsp;&hearts;ꈜꌈꌅꌈꌈ</span>&nbsp;
+</span>
+</div>
+</div>
+</footer>
+
+<!-- Back to top button -->
+<div class="back-to-top" id="backToTop">
+<i class="fas fa-chevron-up"></i>
+</div>
+
+<script>
+// ===== Elements =====
+const main = document.querySelector("main");
+const navLinks = document.querySelectorAll(".nav a");
+
+// ===== Allowed Sections =====
+function getAllowedSections() {
+let sections = [];
+navLinks.forEach(link => {
+let url = new URL(link.href, window.location.origin);
+let page = url.searchParams.get("sr");
+if (page) sections.push(page);
+});
+return sections;
+}
+
+// ===== Get Section From URL =====
+function getSection() {
+const params = new URLSearchParams(window.location.search);
+return params.get("sr") || "home";
+}
+
+// ===== Validate Section =====
+function validateSection(section, allowed) {
+if (!allowed.includes(section)) {
+return "home";
+}
+return section;
+}
+
+// ===== Load Section Content =====
+async function loadSection(section) {
+try {
+const res = await fetch(`/public/${encodeURIComponent(section)}.html`);
+
+if (!res.ok) throw new Error("404");
+
+const html = await res.text();
+main.innerHTML = html;
+
+} catch (err) {
+main.innerHTML = `
+<div class="SlE">
+<h2>Sorry</h2>
+<p>${section} temporarily unavailable</p>
+</div>`;
+}
+}
+
+// ===== Highlight Active Nav =====
+function setActiveNav(section) {
+navLinks.forEach(link => {
+if (link.href.includes("sr=" + section)) {
+link.classList.add("active");
+} else {
+link.classList.remove("active");
+}
+});
+}
+
+// ===== Router Init =====
+function initRouter() {
+const allowed = getAllowedSections();
+let section = getSection();
+section = validateSection(section, allowed);
+loadSection(section);
+setActiveNav(section);
+}
+
+// ===== Back To Top =====
+function initBackToTop() {
+const backToTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll", () => {
+backToTop.classList.toggle("visible", window.scrollY > 200);
+});
+
+backToTop.addEventListener("click", () => {
+window.scrollTo({ top: 0, behavior: "smooth" });
+});
+}
+
+// ===== Footer Toggle =====
+function initFooter() {
+const footer = document.getElementById("footer");
+const title = footer.querySelector(".footer-title");
+
+title.addEventListener("click", (e) => {
+e.stopPropagation();
+footer.classList.toggle("active");
+});
+
+document.body.addEventListener("click", (e) => {
+if (!footer.contains(e.target)) {
+footer.classList.remove("active");
+}
+});
+}
+
+// ===== Init All =====
+document.addEventListener("DOMContentLoaded", () => {
+initRouter();
+initBackToTop();
+initFooter();
+});
+</script>
 </body>
-  </html>
+
+</html>
