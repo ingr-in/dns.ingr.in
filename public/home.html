@@ -1,132 +1,179 @@
-<div class="home">
-  <!-- React CDN -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" ></script>
-
+<div id="sppa" style="padding: 0.25rem 0.25rem 0.75rem;">
   <style>
-    .container {
-    max-width: 800px;
-    margin: 40px auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,20,30,0.15);
+    /* होम पेज के लिए स्कोप्ड स्टाइल - बिना HTML सिंटैक्स के */
+    .name-server-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0 1rem;
     }
-    h1 {
-    text-align: center;
-    color: #b74b3f;
-    font-size: 2rem;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #e2d5c0;
-    padding-bottom: 12px;
+
+    .ns-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 48px;
+      padding: 0.9rem 2rem;
+      min-width: 220px;
+      box-shadow: 0 15px 30px -12px rgba(139, 92, 246, 0.3);
+      transition: all 0.25s ease;
+      text-align: center;
+      font-family: 'Space Grotesk', 'Quicksand', sans-serif;
+      font-weight: 600;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+      color: #2c3e50;
     }
+
+    .ns-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: white;
+      border-color: #fbcfe8;
+      box-shadow: 0 25px 35px -12px #f43f5e;
+    }
+
+    .ns-card a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .ns-card i {
+      font-size: 1.8rem;
+      background: linear-gradient(145deg, #f43f5e, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: 0.2s;
+    }
+
+    .ns-card:hover i {
+      -webkit-text-fill-color: initial;
+      background: none;
+      color: #8b5cf6;
+    }
+
+    .sanskrit-headline {
+      font-family: 'Nirmala UI', 'Mangal', 'Space Grotesk', serif;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 60px;
+      padding: 1.2rem 1.8rem;
+      margin: 1rem 0 0.5rem;
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(5px);
+      background: linear-gradient(145deg, #fbcfe8, #e2d5fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     .subhead {
-    text-align: center;
-    color: #3a5e6b;
-    font-size: 1.1rem;
-    margin-bottom: 25px;
+      font-size: 1.2rem;
+      background: rgba(255,237,240,0.6);
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      margin-bottom: 2rem;
+      color: #2d1b45;
+      border: 1px dashed #f43f5e;
+      backdrop-filter: blur(4px);
+      font-family: 'Quicksand', sans-serif;
     }
-    ul {
-    list-style: none;
-    padding: 0;
+
+    .shloka-badge {
+      background: rgba(255,255,240,0.6);
+      padding: 0.5rem 1.8rem;
+      border-radius: 100px;
+      font-size: 1.2rem;
+      backdrop-filter: blur(4px);
+      border: 1px solid white;
+      color: #475569;
     }
-    li {
-    background: #f9f3e7;
-    margin: 12px 0;
-    padding: 0;
-    border-radius: 40px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-    transition: transform 0.15s ease;
-    border: 1px solid #dccbb8;
+
+    .shloka-badge i {
+      color: #f43f5e;
+      margin-right: 8px;
     }
-    li:hover {
-    transform: scale(1.01);
-    background: #fff6e8;
-    box-shadow: 0 6px 14px rgba(180,100,60,0.15);
+
+    .extra-footer-note {
+      display: flex;
+      justify-content: center;
+      margin: 2.5rem 0 0.8rem;
     }
-    li a {
-    display: block;
-    padding: 16px 24px;
-    text-decoration: none;
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #1e4a5f;
-    text-align: center;
-    letter-spacing: 0.3px;
-    border-radius: 40px;
-    }
-    li a:hover {
-    color: #b74b3f;
-    text-decoration: underline;
-    }
-    .note {
-    background: #e7ded1;
-    padding: 10px;
-    border-radius: 30px;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2b4b55;
+
+    @keyframes fadeInHome {
+      0% { opacity: 0.5; transform: translateY(6px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
   </style>
-  <div>
 
-    <div id="sppa"></div>
+  <!-- संस्कृत हेडलाइन -->
+  <div class="sanskrit-headline">
+    🌐 नाम सर्वर विवरणम्
+  </div>
 
-    <script>
-      const nameServers = [
-      "ku.ku.ingr.in",
-      "su.su.ingr.in",
-      "love.kuku.ingr.in",
-      "love.suru.ingr.in",
-      "crush.kuku.ingr.in",
-      "crush.suru.ingr.in"
-      ];
+  <!-- सबहेड -->
+  <p class="subhead">
+    <i class="fas fa-om" style="color:#f43f5e; margin-right: 8px;"></i>
+    अधोलिखितानि अस्य डोमेनस्य नाम-सर्वराणि सन्ति — कृपया क्लिक् कृत्वा अधिकजानकारीं प्राप्नुत
+  </p>
 
-      // संस्कृत-सन्देशः — प्रत्येकं नामसर्वरं hyperlink रूपेण
-      function NameServerApp() {
-      return React.createElement(
-      "div",
-      { className: "container" },
+  <!-- नाम सर्वर ग्रिड - बिना किसी अतिरिक्त HTML टैग के केवल div और स्टाइल -->
+  <div class="name-server-grid">
+    <div class="ns-card">
+      <a href="https://dns.ingr.in/तिथिः.html" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-server"></i> ku.ku.ingr.in
+      </a>
+    </div>
+    <div class="ns-card">
+      <a href="https://dns.ingr.in/तिथिः.html" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-server"></i> su.su.ingr.in
+      </a>
+    </div>
+    <div class="ns-card">
+      <a href="https://dns.ingr.in/तिथिः.html" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-heart" style="-webkit-text-fill-color:#f43f5e; background:none; color:#f43f5e;"></i> love.kuku.ingr.in
+      </a>
+    </div>
+    <div class="ns-card">
+      <a href="https://dns.ingr.in/तिथिः.html" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-heart" style="-webkit-text-fill-color:#c084fc; background:none; color:#c084fc;"></i> love.suru.ingr.in
+      </a>
+    </div>
+    <div class="ns-card">
+      <a href="https://dns.ingr.in/तिथिः.html" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-star" style="-webkit-text-fill-color:#fbbf24; background:none; color:#fbbf24;"></i> crush.kuku.ingr.in
+      </a>
+    </div>
+    <div class="ns-card">
+      <a href="https://dns.ingr.in/तिथिः.html" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-star" style="-webkit-text-fill-color:#f472b6; background:none; color:#f472b6;"></i> crush.suru.ingr.in
+      </a>
+    </div>
+  </div>
 
-      // शीर्षकम्
-      React.createElement("h1", { style: { fontFamily: "'Nirmala UI', Mangal" } }, "🌐 नाम सर्वर विवरणम्"),
+  <!-- बैज और डेकोरेशन -->
+  <div class="extra-footer-note">
+    <span class="shloka-badge">
+      <i class="fa-regular fa-gem"></i> ॐ तत् सत्  <i class="fa-regular fa-sun"></i>
+    </span>
+  </div>
 
-      // उपशीर्षकम्
-      React.createElement(
-      "p",
-      { className: "subhead" },
-      "अधोलिखितानि अस्य डोमेनस्य नाम-सर्वराणि सन्ति — कृपया क्लिक् कृत्वा अधिकजानकारीं प्राप्नुत"
-      ),
+  <div style="text-align: center; margin-top: 0.5rem; opacity:0.7; font-size:0.95rem; font-family: 'Great Vibes', cursive; color:#4c1d5c;">
+    ✦  ingr.in  ✦  नामसर्वरसंस्कृतम्  ✦
+  </div>
 
-      // सूची — प्रत्येकं नामसर्वरं योजयित्वा
-      React.createElement(
-      "ul",
-      null,
-      nameServers.map((ns, index) =>
-      React.createElement(
-      "li",
-      { key: index },
-      React.createElement(
-      "a",
-      {
-      href: `https://dns.ingr.in/तिथिः.html`, // http:// प्रयुक्तम्
-      target: "_blank", // नूतनपत्रे
-      rel: "noopener noreferrer"   // सुरक्षार्थम्
-      },
-      ns
-      )
-      )
-      )
-      ),
-
-      // पादटिप्पणी
-      );
-      }
-
-      const sppa = ReactDOM.createRoot(document.getElementById("sppa"));
-      sppa.render(React.createElement(NameServerApp));
-    </script>
-
-    <!-- वैकल्पिकः सरल-व्याख्याः -->
+  <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0 0.5rem; flex-wrap: wrap; font-size: 1rem;">
+    <span style="background: rgba(255,255,240,0.4); padding:4px 14px; border-radius: 30px;">
+      <i class="fa-regular fa-clock"></i> सर्वे सक्रियाः
+    </span>
+    <span style="background: rgba(255,255,240,0.4); padding:4px 14px; border-radius: 30px;">
+      <i class="fa-regular fa-map"></i> DNS अभिलेखाः
+    </span>
   </div>
 </div>
