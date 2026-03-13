@@ -572,7 +572,7 @@ return section;
 // ===== Load Section Content =====
 async function loadSection(section) {
 try {
-const res = await fetch(`/public/${encodeURIComponent(section)}.html`);
+const res = await fetch(`/pages/${encodeURIComponent(section)}.html`);
 
 if (!res.ok) throw new Error("404");
 
