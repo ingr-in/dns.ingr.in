@@ -1,0 +1,22 @@
+<html>
+  <script>
+    async function loadSection(section) {
+try {
+const res = await fetch(`/pages/${encodeURIComponent(section)}.html`);
+
+if (!res.ok) throw new Error("404");
+
+const html = await res.text();
+main.innerHTML = html;
+
+} catch (err) {
+main.innerHTML = `
+<div class="SlE">
+<h2>Sorry</h2>
+<p>${section} temporarily unavailable</p>
+</div>`;
+
+}
+    }
+  </script>
+</html>
