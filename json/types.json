@@ -1,0 +1,54 @@
+{
+"record_types": [
+    {
+      "value": "A",
+      "name": "A",
+      "description": "IPv4 address"
+    },
+    {
+      "value": "AAAA",
+      "name": "AAAA",
+      "description": "IPv6 address"
+    },
+    {
+      "value": "CNAME",
+      "name": "CNAME",
+      "description": "Canonical name / alias"
+    },
+    {
+      "value": "MX",
+      "name": "MX",
+      "description": "Mail server"
+    },
+    {
+      "value": "TXT",
+      "name": "TXT",
+      "description": "Text information"
+    },
+    {
+      "value": "NS",
+      "name": "NS",
+      "description": "Name servers"
+    },
+    {
+      "value": "SOA",
+      "name": "SOA",
+      "description": "Start of Authority"
+    },
+    {
+      "value": "PTR",
+      "name": "PTR",
+      "description": "Reverse DNS"
+    },
+    {
+      "value": "SRV",
+      "name": "SRV",
+      "description": "Service record"
+    },
+    {
+      "value": "CAA",
+      "name": "CAA",
+      "description": "Certificate Authority Authorization"
+    }
+  ]
+}
