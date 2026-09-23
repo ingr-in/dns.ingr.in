@@ -1,0 +1,59 @@
+<style>
+@url('https://www.dns.ingr.in/css/home.css');
+</style>
+<script deffer src='https://www.dns.ingr.in/js/sadh.js'><script>
+
+<div id="App">
+
+  <div id="main" class="main">
+
+    <div class="dns-tool">
+
+      <h2 class="odrasya">
+        <i class="fas fa-search"></i> DNS Query Tool
+      </h2>
+
+      <div id="error-container"></div>
+
+      <!-- Domain -->
+      <input
+        id="domain"
+        type="text"
+        placeholder="Enter domain (e.g., ingr.in)"
+        value="ingr.in"
+      >
+
+      <!-- DNS Provider -->
+      <select id="provider">
+        <option>Loading DNS providers...</option>
+      </select>
+
+      <!-- Record Type -->
+      <select id="type">
+        <option>Loading record types...</option>
+      </select>
+
+      <!-- Query -->
+      <button id="queryButton" class="data-sto-rel-dp">
+        <i class="fas fa-search"></i> Query DNS
+      </button>
+
+      <!-- Output -->
+      <pre id="output-container"></pre>
+
+      <!-- Tips -->
+      <div class="dns-tips">
+
+        <h3>
+          <i class="fas fa-lightbulb"></i> Record Types
+        </h3>
+
+        <ul id="record-tips"></ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
