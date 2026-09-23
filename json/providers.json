@@ -1,0 +1,16 @@
+{
+  "providers": [
+    {
+      "id": "google",
+      "name": "Google DNS",
+      "url": "https://dns.google/resolve"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare DNS",
+      "url": "https://cloudflare-dns.com/dns-query"
+    }
+  ]
+}
+
+  
