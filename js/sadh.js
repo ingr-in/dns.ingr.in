@@ -1,8 +1,8 @@
 alert('s');
 (async function () {
 
-  const providersURL = "https://www.dns.ingr.in/json/providers.json";
-  const typesURL = "https://www.dns.ingr.in/json/types.json";
+  const providersURL = "../json/providers.json";
+  const typesURL = "../json/types.json";
 
   const domainInput = document.getElementById("domain");
   const providerInput = document.getElementById("provider");
