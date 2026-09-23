@@ -1,0 +1,41 @@
+
+  #App .main {
+    background-color: rgba(255, 255, 255, 0.03);
+    display: block;
+  }
+
+  #App .dns-tool {
+    width: 100%;
+  }
+
+  #App #error-container {
+    display: none;
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+    padding: 0.75rem;
+    border-radius: var(--simakar);
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+  }
+
+  #App #output-container {
+    display: none;
+  }
+
+  #App .dns-tips {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--simakar);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  #App .dns-tips h3 {
+    color: var(--SpRiGryN);
+    margin-bottom: 0.5rem;
+  }
+
+  #App .dns-tips ul {
+    padding-left: 1.5rem;
+  }
