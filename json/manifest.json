@@ -1,6 +1,6 @@
 {
-  "name": "Mini PWA App",
-  "short_name": "MiniPWA",
+  "name": "dns tool",
+  "short_name": "dns",
   "start_url": "index.html",
   "scope": "/",
   "display": "standalone",
